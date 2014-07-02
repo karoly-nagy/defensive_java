@@ -14,11 +14,11 @@ public class SimpleProcessorTest {
 	private static final List<String> TEST_DATA = newArrayList();
 	private static final List<String> EXPECTED_DATA = newArrayList();
 	
-	private SimpleProcessor simpleProcessor;
+	private SimpleProcessor underTest;
 	
 	@Before
 	public void setUp() {
-		simpleProcessor = new SimpleProcessor();
+		underTest = new SimpleProcessor();
 		// populate LIST_DATA, EXPECTED_DATA...
 	}
 	
@@ -27,14 +27,14 @@ public class SimpleProcessorTest {
         //given
         ProcessableItem testItem = createProcessableItem();
         //when
-        ProcessableItem result = simpleProcessor.process(testItem);
+        ProcessableItem result = underTest.process(testItem);
         //then
         assertEquals(result.getData(), EXPECTED_DATA);
     }
 	
 	private ProcessableItem createProcessableItem() {
 		ProcessableItem processableItem = new ProcessableItem();
-		processableItem.setData(TEST_DATA);
+		processableItem.getData().addAll(TEST_DATA);
 		return processableItem;
 		
 	}

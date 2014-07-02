@@ -9,6 +9,7 @@ import com.epam.training.defensive.java.interfaces.Processor;
 @Guarded
 public class DBCProcessor implements Processor {
 	
+	@NotNull
 	public ProcessableItem process(@NotNull ProcessableItem item) {
 		ProcessableItem newItem = null;
         if (item.getData().size() < 10) {
