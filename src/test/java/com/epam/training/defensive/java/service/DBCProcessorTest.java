@@ -1,5 +1,6 @@
 package com.epam.training.defensive.java.service;
 
+import static com.epam.training.defensive.java.service.AOPTestHelper.createAOPProxy;
 import static com.google.common.collect.Lists.newArrayList;
 import static junit.framework.Assert.assertEquals;
 
@@ -9,26 +10,20 @@ import net.sf.oval.exception.ConstraintsViolatedException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training.defensive.java.domain.ProcessableItem;
-import com.epam.training.defensive.java.spring.SpringConfigurationDbC;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringConfigurationDbC.class)
 public class DBCProcessorTest {
 
 	private static final List<String> TEST_DATA = newArrayList();
 	private static final List<String> EXPECTED_DATA = newArrayList();
 	
-	@Autowired
 	private DBCProcessor underTest;
 
 	@Before
 	public void setUp() {
+		underTest = createAOPProxy(new DBCProcessor());
+				
 		// populate LIST_DATA, EXPECTED_DATA...
 	}
 
@@ -42,7 +37,6 @@ public class DBCProcessorTest {
         assertEquals(result.getData(), EXPECTED_DATA);
     }
 	
-	
 	@Test (expected = ConstraintsViolatedException.class)
 	public void whenProcessCalledWithNullShouldThrowConstraintsViolatedException() {
 		underTest.process(null);
@@ -54,6 +48,6 @@ public class DBCProcessorTest {
 		return processableItem;
 		
 	}
+	
+	
 }
-
-
