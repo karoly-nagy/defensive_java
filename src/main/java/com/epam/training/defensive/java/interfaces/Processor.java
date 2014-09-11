@@ -10,7 +10,7 @@ public interface Processor {
 	 * 
 	 * @param item
 	 *            a processable item to process. Read only, the processed object
-	 *            is returned. Must not be null.
+	 *            is returned. Must not be null. 
 	 * @return the processed result which is never null.
 	 * @throws IllegalArgumentException when input item is null.
 	 */
